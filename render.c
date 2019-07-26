@@ -7,13 +7,12 @@ FT_Face     face;      /* handle to face object */
 int render_init(void * font_buf, uint32_t font_buf_size);
 
 int render_glyph(uint32_t glyph_code, 
-                 uint8_t * out_buf, uint32_t * g_w, uint32_t * g_h, uint32_t * g_x, uint32_t * g_y);
+        uint8_t * out_buf, uint32_t * g_w, uint32_t * g_h, uint32_t * g_x, uint32_t * g_y);
 
 void test(uint32_t glyph_id);
 
 int main(int argc, char ** argv)
 {
-
     FILE *fp;
 
     fp = fopen("./arial.ttf", "r"); 
@@ -32,15 +31,17 @@ int main(int argc, char ** argv)
 
     render_init(buf, sz);
 
-
     test('A');
     test('B');
+    test('.');
+    
+    return 0;
 }
 
 int render_init(void * font_buf, uint32_t font_buf_size) 
 {
     FT_Library  library;
-    
+
     int error; 
 
     error = FT_Init_FreeType( &library );
@@ -49,7 +50,7 @@ int render_init(void * font_buf, uint32_t font_buf_size)
         printf("Error in FT_Init_FreeType: %d\n", error);
         return -1;
     }
-    
+
     error = FT_New_Memory_Face( library,
             font_buf,    /* first byte in memory */
             font_buf_size,      /* size in bytes        */
@@ -87,7 +88,7 @@ int render_init(void * font_buf, uint32_t font_buf_size)
 }
 
 int render_glyph(uint32_t glyph_code, 
-                 uint8_t * out_buf, uint32_t * g_w, uint32_t * g_h, uint32_t * g_x, uint32_t * g_y)
+        uint8_t * out_buf, uint32_t * g_w, uint32_t * g_h, uint32_t * g_x, uint32_t * g_y)
 {
     int error; 
 
@@ -128,11 +129,11 @@ void test(uint32_t glyph_id)
     uint32_t y;
 
     uint8_t out_buf[1024];
-    
+
     render_glyph(glyph_id, out_buf, &w, &h, &x, &y);
 
     printf("w:%d, h:%d, x:%d, y:%d\n\n", w, h, x, y);
-    
+
     uint32_t i,j;
     for(i = 0; i < h; i++) {
         for(j = 0; j < w; j++) {
@@ -142,8 +143,6 @@ void test(uint32_t glyph_id)
         }
         printf("\n");
     }
-    
-   printf("\n");
-   printf("\n");
-   
+
+    printf("\n\n");
 }

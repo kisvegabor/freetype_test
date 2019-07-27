@@ -8,3 +8,4 @@ Steps:
 - `make`
 - `sudo make install`
 - In `freetype_test`: ` gcc render.c -I/usr/include/freetype2 -L/usr/local/lib -lfreetype`
+- `./a.out`

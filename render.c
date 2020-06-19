@@ -145,4 +145,5 @@ void test(uint32_t glyph_id)
     }
 
     printf("\n\n");
-}
+} 
+//dummy

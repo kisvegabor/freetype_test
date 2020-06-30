@@ -1,15 +1,17 @@
-name: Merge master to dev
+name: Merge master branch to dev
 on:
   push:
-    branches: [ master ]
-
+    branches:
+      - 'master'
 jobs:
-  - uses: actions/checkout@v2
-    run: |
-    git config --local user.email "action@github.com"
-    git config --local user.name "GitHub Action"
-    git fetch master
-    git fetch dev
-    git checkout dev
-    git merge master
-    git push origin dev
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge to dev branch
+        uses: devmasx/merge-branch@v1.1.0
+        with:
+          type: now
+          target_branch: 'dev'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

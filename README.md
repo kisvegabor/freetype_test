@@ -1,5 +1,4 @@
-# freetype_test
-
+# Test FreeType
 
 I've mainly followed [this tutorial](https://www.freetype.org/freetype2/docs/tutorial/step1.html).
 
